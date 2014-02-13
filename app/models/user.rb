@@ -1,9 +1,9 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
-  
+
   scope :by_name, order('name ASC')
   scope :visible, where('hidden = ?', false)
-  
+
   has_secure_password
   validates :password, :presence => { :on => :create }
   has_many :punches
@@ -34,13 +34,13 @@ class User < ActiveRecord::Base
 
     self.hours_worked(beginning_of_month..end_of_month)
   end
-  
+
   def hours_worked(datetime_range)
     #don't consider future time
     datetime_range = datetime_range.begin..(datetime_range.end < Time.now ? datetime_range.end : Time.now)
-    
+
     punches_in_range = self.punches.where('punched_at >= ? and punched_at <= ?', datetime_range.begin, datetime_range.end).order('punched_at ASC').all
-    
+
     return 0 if punches_in_range.empty?
 
     fixed_punches_in_range = []
@@ -66,10 +66,10 @@ class User < ActiveRecord::Base
     fixed_punches_in_range.each_slice(2) do |pair|
       time_worked += pair.last.punched_at - pair.first.punched_at
     end
-    
+
     time_worked/60/60
   end
-  
+
   def bad_memory?
     if self.bad_memory_index > 50
       true
@@ -77,11 +77,11 @@ class User < ActiveRecord::Base
       false
     end
   end
-  
+
   def bad_memory_index
     last_punches = self.punches.order('punched_at DESC').limit(10)
     num_altered = last_punches.inject(0) {|count, p| p.altered? ?  count + 1 : count}
     num_altered.to_f / last_punches.count * 100 rescue 0
   end
-  
+
 end
