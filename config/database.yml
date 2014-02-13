@@ -1,26 +1,23 @@
 development:
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   database: bateponto_development
-  username: root
-  reconnect: false
+  username: roger
+  password:
   pool: 5
-  socket: /tmp/mysql.sock
 
 production:
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   database: bateponto_production
-  username: root
-  reconnect: false
+  username: roger
+  password:
   pool: 5
-  socket: /tmp/mysql.sock
 
 test:
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   database: bateponto_test
-  username: root
-  reconnect: false
+  username: roger
+  password:
   pool: 5
-  socket: /tmp/mysql.sock
