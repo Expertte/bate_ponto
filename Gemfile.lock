@@ -63,7 +63,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25)
     multi_json (1.8.0)
-    mysql2 (0.3.13)
+    pg (0.17.1)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -131,7 +131,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
   jquery-rails
-  mysql2
+  pg
   pry-rails
   rails (= 3.2.14)
   sass-rails (~> 3.2)
